@@ -1,0 +1,7 @@
+{
+  "name": "HomeaZZon",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
