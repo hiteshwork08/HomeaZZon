@@ -1,13 +1,11 @@
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
-import { GestureController } from '@ionic/angular';
-import { SegmentItem } from 'src/app/models/SegmentItem';
-
+import { Component, Input, OnInit, Output, EventEmitter, ViewChild, ElementRef } from "@angular/core";
+import { GestureController } from "@ionic/angular";
+import { SegmentItem } from "src/app/models/SegmentItem";
 
 @Component({
-  selector: 'app-segment-selector',
-  templateUrl: './segment-selector.component.html',
-  styleUrls: ['./segment-selector.component.scss'],
+  selector: "app-segment-selector",
+  templateUrl: "./segment-selector.component.html",
+  styleUrls: ["./segment-selector.component.scss"],
 })
 export class SegmentSelectorComponent implements OnInit {
   @Input() initView: SegmentItem;
@@ -15,12 +13,10 @@ export class SegmentSelectorComponent implements OnInit {
   @Output() selectedSegment: EventEmitter<any> = new EventEmitter();
 
   constructor(private gestureCtrl: GestureController) {
-
     //this.handleGestureMovmts();
   }
 
   ngOnInit() {
-
     //console.log(this.segmentEl.nativeElement);
   }
 
@@ -50,9 +46,6 @@ export class SegmentSelectorComponent implements OnInit {
       <div>Current X: ${currentX}</div>
       <div>Delta X: ${deltaX}</div>
       <div>Velocity X: ${velocityX}</div>
-    `)
+    `);
   }
-
-
-
 }

@@ -13,7 +13,7 @@ import { CommunicatorService } from "./services/communicator/communicator.servic
 import { IUserDto } from "./models/dto/interfaces/IUserDto";
 import { AppStorageService } from "./services/app-storage/app-storage.service";
 import { IPropertyDto } from "./models/dto/interfaces/IPropertyDto";
-// import { ThemeableBrowser, ThemeableBrowserOptions, ThemeableBrowserObject } from '@ionic-native/themeable-browser';
+// import { ThemeableBrowserinAppBrowserOptionsinAppBrowserObject } from '@ionic-native/themeable-browser';
 // Import Auth0Cordova
 var Auth0Cordova = require("@auth0/cordova");
 import { IAuthTokenDto } from "./models/dto/interfaces/IAuthTokenDto";
@@ -73,7 +73,8 @@ export class AppComponent extends BasePage {
   ) {
     super(null, null, communicator, menu, platform, router, null, null, null);
 
-    platform.ready().then(() => {
+    platform.ready().then(async () => {
+      await this.storage.create();
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();

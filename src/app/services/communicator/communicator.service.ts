@@ -1,39 +1,36 @@
-import { Injectable } from '@angular/core';
-import { baseService } from '../base.service';
-import { HttpClient } from '@angular/common/http';
-import { Observable, Observer, Subject } from 'rxjs';
-import { share } from 'rxjs/operators'
-import { IPropertyDto } from 'src/app/models/dto/interfaces/IPropertyDto';
+import { Injectable } from "@angular/core";
+import { baseService } from "../base.service";
+import { HttpClient } from "@angular/common/http";
+import { Observable, Observer, Subject } from "rxjs";
+import { share } from "rxjs/operators";
+import { IPropertyDto } from "src/app/models/dto/interfaces/IPropertyDto";
 @Injectable({
-    providedIn: 'root'
+  providedIn: "root",
 })
 export class CommunicatorService extends baseService {
-    public subjectProperties = new Subject<any>();
-    private subjectProperty = new Subject<any>();
-    constructor(public http: HttpClient) {
-        super(http);
-    }
+  public subjectProperties = new Subject<void>();
+  private subjectProperty = new Subject<void | IPropertyDto>();
+  constructor(public override http: HttpClient) {
+    super(http);
+  }
 
+  sendProperties(properties: any) {
+    window.dispatchEvent(new CustomEvent("properties:loaded", { detail: properties }));
+  }
 
+  clearMessage() {
+    this.subjectProperties.next();
+  }
 
-    sendProperties(properties: any) {
-        window.dispatchEvent(new CustomEvent("properties:loaded", { "detail": properties }))
-    }
+  getProperties(): Observable<any> {
+    return this.subjectProperties.asObservable();
+  }
 
-    clearMessage() {
-        this.subjectProperties.next();
-    }
+  sendSelectedProperty(property: IPropertyDto) {
+    this.subjectProperty.next(property);
+  }
 
-    getProperties(): Observable<any> {
-        return this.subjectProperties.asObservable();
-    }
-
-    sendSelectedProperty(property: IPropertyDto) {
-        this.subjectProperty.next(property);
-    }
-
-
-    getSelectedProperty(): Observable<any> {
-        return this.subjectProperty.asObservable();
-    }
+  getSelectedProperty(): Observable<any> {
+    return this.subjectProperty.asObservable();
+  }
 }

@@ -10,6 +10,7 @@ import { ContactInformationService } from "../../../services/contact-information
 import { UtilitiesService } from "../../../services/utlities/utilities.service";
 import { UxNotifierService } from "../../../services/uxNotifier/ux-notifier.service";
 import { BasePage } from "../../base/base.page";
+import { EmailDto } from "src/app/models/dto/EmailDto";
 
 @Component({
   selector: "app-contact-information-modal",
@@ -35,9 +36,9 @@ export class ContactInformationModalPage extends BasePage implements OnInit {
 
   constructor(
     private modalController: ModalController,
-    public navParams: NavParams,
+    public override navParams: NavParams,
     private alertService: UxNotifierService,
-    public platform: Platform,
+    public override platform: Platform,
     private iab: InAppBrowser,
     private utilityService: UtilitiesService,
     private contactInformationService: ContactInformationService,
@@ -46,7 +47,7 @@ export class ContactInformationModalPage extends BasePage implements OnInit {
     super(null, navParams, null, null, platform, null, null, null, null, null);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     const parsedInfo = this.navParams.get("x");
     this.contactInformation = parsedInfo;
 
@@ -140,7 +141,7 @@ export class ContactInformationModalPage extends BasePage implements OnInit {
       this.alertService.showToast("Please fill all the required fields to continue", this.constants.ToastColorBad);
     } else {
       debugger;
-      const email = this.sendEmailForm.value;
+      const email = this.sendEmailForm.value as EmailDto;
       this.utilityService.sendEmail(email).then(
         (x) => {
           console.log(x);

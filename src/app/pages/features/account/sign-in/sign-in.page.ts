@@ -3,9 +3,8 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 // TODO: remove the '../../..' and use the "~" or whatever
 // TODO: remove the " and use '
-import { Deeplinks } from "@ionic-native/deeplinks/ngx";
-import { InAppBrowser } from "@awesome-cordova-plugins/in-app-browser/ngx";
-import { SafariViewController } from "@ionic-native/safari-view-controller/ngx";
+import { Deeplinks } from "@awesome-cordova-plugins/deeplinks/ngx";
+import { SafariViewController } from "@awesome-cordova-plugins/safari-view-controller/ngx";
 import { AlertController, LoadingController, MenuController, ModalController, NavController, Platform, ToastController } from "@ionic/angular";
 import { Storage } from "@ionic/storage";
 import { Constants } from "src/app/common/Constants";
@@ -42,25 +41,24 @@ export class SignInPage extends BasePage {
     private deeplinks: Deeplinks,
     public authService: AuthService,
     // ionic
-    public platform: Platform,
+    public override platform: Platform,
     private storage: Storage,
     // angular
-    public router: Router,
+    public override router: Router,
     // framework controllers
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    public navController: NavController,
+    public override navController: NavController,
     public modalCtrl: ModalController,
-    public menuController: MenuController,
+    public override menuController: MenuController,
     public toastCtrl: ToastController,
-    private inAppBrowser: InAppBrowser,
     // services
     private accountService: AccountService,
     private companyTypesService: CompanyTypesService,
     private privatelabelService: PrivateLabelService,
     private userService: UserDetailsService,
-    public userTypesService: UserTypesService,
-    public uxNotifierService: UxNotifierService,
+    public override userTypesService: UserTypesService,
+    public override uxNotifierService: UxNotifierService,
     private firebaseAuth: FirebaseAuthService
   ) {
     super(navController, null, null, null, platform, router, uxNotifierService, userTypesService, null);
@@ -86,7 +84,7 @@ export class SignInPage extends BasePage {
     localStorage.removeItem("CurrentView");
   }
 
-  async ngOnInit() {
+  override async ngOnInit() {
     console.log("ionViewDidLoad SigninPage");
 
     this.AppInsights.trackEvent({

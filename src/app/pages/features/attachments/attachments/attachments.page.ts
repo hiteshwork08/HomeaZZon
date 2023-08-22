@@ -23,19 +23,19 @@ export class AttachmentsPage extends BasePage {
   isShowSave: boolean = false;
 
   constructor(
-    public navController: NavController,
+    public override navController: NavController,
     public metattachService: MetattachService,
     private loadingCtrl: LoadingController,
-    public router: Router,
+    public override router: Router,
     private activeRouter: ActivatedRoute,
-    private inAppBrowser: InAppBrowser,
-    public platform: Platform,
-    public uxNotifierService: UxNotifierService
+    public override inAppBrowser: InAppBrowser,
+    public override platform: Platform,
+    public override uxNotifierService: UxNotifierService
   ) {
-    super(navController, null, null, null, platform, router, uxNotifierService, null, null);
+    super(navController, null, null, null, platform, router, uxNotifierService, null, null, inAppBrowser);
   }
 
-  ngOnInit() {
+  override ngOnInit() {
     console.log("ngOnInit AttachmentsPage");
     //this.AppInsights.trackPageView({ name: 'AttachmentsPage' });
   }

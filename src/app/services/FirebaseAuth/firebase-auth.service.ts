@@ -9,7 +9,7 @@ import { FirebaseUser } from "src/app/models/FirebaseUser";
 import { Platform } from "@ionic/angular";
 import { GooglePlus } from "@awesome-cordova-plugins/google-plus/ngx";
 import { SignInWithApple, ASAuthorizationAppleIDRequest, AppleSignInResponse } from "@awesome-cordova-plugins/sign-in-with-apple/ngx";
-import firebase from "firebase/compat";
+import firebase from "firebase/compat/app";
 
 @Injectable({
   providedIn: "root",

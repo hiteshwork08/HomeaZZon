@@ -54,20 +54,20 @@ export class ItemDetailsPage extends BasePage {
   public tagContextList = []; //[{ value: 0, display: 'Angular' }, { value: 1, display: 'React' }];
   public selectedTagItems = [];
   constructor(
-    public navController: NavController,
-    public navParams: NavParams,
+    public override navController: NavController,
+    public override navParams: NavParams,
     private itemService: ItemService,
     private loadingCtrl: LoadingController,
-    public uxNotifierService: UxNotifierService,
+    public override uxNotifierService: UxNotifierService,
     private sanitizerService: DomSanitizer,
-    public communicator: CommunicatorService,
-    public menuController: MenuController,
+    public override communicator: CommunicatorService,
+    public override menuController: MenuController,
     private attachmentService: MetattachService,
-    private inAppBrowser: InAppBrowser,
-    public platform: Platform,
-    public router: Router,
+    public override inAppBrowser: InAppBrowser,
+    public override platform: Platform,
+    public override router: Router,
     private activeRoute: ActivatedRoute,
-    public userTypesService: UserTypesService,
+    public override userTypesService: UserTypesService,
     public profileItemImageService: ProfileItemImageService,
     public sanitizer: DomSanitizer,
     private tagService: TagService,
@@ -77,7 +77,7 @@ export class ItemDetailsPage extends BasePage {
     private contactInformationService: ContactInformationService,
     private alertCtrl: AlertController
   ) {
-    super(navController, null, communicator, menuController, platform, router, uxNotifierService, userTypesService, null);
+    super(navController, null, communicator, menuController, platform, router, uxNotifierService, userTypesService, null, inAppBrowser);
     this._constants = new Constants();
     this.form = this.formBuilder.group({
       code: [],
@@ -85,7 +85,7 @@ export class ItemDetailsPage extends BasePage {
     });
   }
 
-  async ngOnInit() {
+  override async ngOnInit() {
     await this.tagService.getAllTags().then((tagList: Array<ITagContextDto>) => {
       this.tagContextList = this.createTagsModel(tagList);
     });

@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
 import { Router } from "@angular/router";
-import { InAppBrowser } from "@awesome-cordova-plugins/in-app-browser/ngx";
 import { ModalController, NavController, NavParams } from "@ionic/angular";
 import { Storage } from "@ionic/storage";
 import { Constants } from "src/app/common/Constants";
@@ -35,7 +34,6 @@ export class LotDetailsPage extends BasePage {
     public navCtrl: NavController,
     public override navParams: NavParams,
     public override uxNotifierService: UxNotifierService,
-    private inAppBrowser: InAppBrowser,
     private modalController: ModalController,
     private privateLabelService: PrivateLabelService,
     private storage: Storage,
